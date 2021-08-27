@@ -1,12 +1,19 @@
+document.getElementById('error-message').style.display = 'none';
+
 const loadFood = () => {
   const inputField = document.getElementById('search-field');
   const inputFieldText = inputField.value;
-  const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputFieldText}`
+  const url = `https://www.themealdb.com/api/json/v91/1/search.php?s=${inputFieldText}`
   fetch(url)
     .then(res => res.json())
     .then(data => displaySearchResults(data.meals))
+    .catch(error => displayErrorMessage(error))
   // console.log(url)
   // console.log(inputFieldText)
+}
+const displayErrorMessage = error => {
+  document.getElementById('error-message').style.display = 'block';
+
 }
 const displaySearchResults = meals => {
   console.log(meals);

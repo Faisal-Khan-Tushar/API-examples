@@ -7,9 +7,14 @@ const loadFood = async () => {
   else {
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchFieldText}`;
     searchFieldText.value = ' ';
-    const res = await fetch(url)
-    const data = await res.json()
-    displayMeals(data.meals)
+    try {
+      const res = await fetch(url)
+      const data = await res.json()
+      displayMeals(data.meals)
+    }
+    catch (error) {
+      console.log('something went wrong')
+    }
     // fetch(url)
     //   .then(res => res.json())
     //   .then(data => displayMeals(data.meals))
